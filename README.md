@@ -283,6 +283,14 @@ HALT
 This example compares two numbers and prints a message based on the comparison.
 
 ```
+FUNC print_equal {
+    PRINT "The numbers are equal."
+}
+
+FUNC print_not_equal {
+    PRINT "The numbers are not equal."
+}
+
 # Assign numbers
 SET @0, 10
 SET @1, 20
@@ -291,14 +299,6 @@ SET @1, 20
 CMP @2, @0, @1
 CEQ print_equal, @2, 1
 CEQ print_not_equal, @2, 0
-
-FUNC print_equal {
-    PRINT "The numbers are equal."
-}
-
-FUNC print_not_equal {
-    PRINT "The numbers are not equal."
-}
 ```
 
 ## Contributing
