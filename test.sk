@@ -5,7 +5,10 @@ FUNC hi {
     PRINT @RETURN
 }
 
-CALL pi
+CEQ pi, 1, 1
 SET @1, @RETURN
 PRINT @1
-ADD @1, @RETURN, 20
+INPUT @2, "hi, choose a number: "
+REG
+SWAP @1, @2
+REG
