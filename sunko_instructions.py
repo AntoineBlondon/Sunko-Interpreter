@@ -22,7 +22,10 @@ def SUB(*args):
 
 def CALL(*args):
     function_name = args[0]
+
     runtime = ContextManager().get_runtime()
+    runtime.store_to_register("RETURN", 0)
+    
     body = runtime.functions[function_name].statements
     runtime.evaluate(body)
 
@@ -30,5 +33,11 @@ def PRINT(*args):
     value = args[0]
     print(get_value(value))
 
-def REG():
+def REG(*args):
+    print(args)
     print(ContextManager().get_runtime().registers)
+
+
+def HALT(*args):
+    ContextManager().get_runtime().is_running = False
+    pass

@@ -40,7 +40,7 @@ class ArgumentList(AstNode):
         self.arguments = arguments
     
     def __str__(self):
-        return f"ArgumentList(arguments={self.arguments})"
+        return f"ArgumentList(arguments={[str(x)+', ' for x in self.arguments]})"
 
 
 class Number(AstNode):

@@ -13,6 +13,7 @@ tokens = (
     'CHAR_LITERAL',
     'LBRACKET',
     'RBRACKET',
+    'NEWLINE',
 )
 reserved = {
     'FUNC': 'FUNC',
@@ -63,9 +64,10 @@ def t_IDENTIFIER(t):
     return t
 
 # Rule to track line numbers
-def t_newline(t):
+def t_NEWLINE(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+    return t
 
 # Error handling rule
 def t_error(t):

@@ -56,7 +56,9 @@ def p_expression_list(p):
     else:
         p[0] = [p[1]]
 
-
+def p_instruction_or_function_call_no_args(p):
+    'instruction_or_function_call : IDENTIFIER NEWLINE'
+    p[0] = Instruction(instruction_name=p[1], arguments=ArgumentList(arguments=[]))
 
 # Instruction or function call with variable arguments
 def p_instruction_or_function_call(p):
@@ -65,8 +67,7 @@ def p_instruction_or_function_call(p):
 
 # Handling an optional argument list for instructions
 def p_argument_list_optional(p):
-    '''argument_list_optional : argument_list
-                              | empty'''
+    '''argument_list_optional : argument_list'''
     p[0] = ArgumentList(arguments=p[1]) if p[1] else ArgumentList(arguments=[])
 
 # Handling the argument list for instructions

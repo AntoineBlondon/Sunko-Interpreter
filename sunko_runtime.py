@@ -87,6 +87,8 @@ class Runtime:
     def evaluate_StatementList(self, node):
         for statement in node.statements:
             self.evaluate(statement)
+            if not self.is_running:
+                return
 
     def evaluate_Register(self, node):
         register_index = node.index

@@ -16,9 +16,9 @@ Rule 10    expression -> CHAR_LITERAL
 Rule 11    expression -> LBRACKET expression_list RBRACKET
 Rule 12    expression_list -> expression_list COMMA expression
 Rule 13    expression_list -> expression
-Rule 14    instruction_or_function_call -> IDENTIFIER argument_list_optional
-Rule 15    argument_list_optional -> argument_list
-Rule 16    argument_list_optional -> empty
+Rule 14    instruction_or_function_call -> IDENTIFIER NEWLINE
+Rule 15    instruction_or_function_call -> IDENTIFIER argument_list_optional
+Rule 16    argument_list_optional -> argument_list
 Rule 17    argument_list -> argument_list COMMA argument
 Rule 18    argument_list -> argument
 Rule 19    argument -> NUMBER
@@ -33,9 +33,10 @@ Terminals, with rules where they appear
 CHAR_LITERAL         : 10 21
 COMMA                : 12 17
 FUNC                 : 7
-IDENTIFIER           : 7 14 22
+IDENTIFIER           : 7 14 15 22
 LBRACE               : 7
 LBRACKET             : 11
+NEWLINE              : 14
 NUMBER               : 8 19
 RBRACE               : 7
 RBRACKET             : 11
@@ -46,9 +47,9 @@ error                :
 Nonterminals, with rules where they appear
 
 argument             : 17 18
-argument_list        : 15 17
-argument_list_optional : 14
-empty                : 16
+argument_list        : 16 17
+argument_list_optional : 15
+empty                : 
 expression           : 5 12 13
 expression_list      : 11 12
 function_definition  : 4
@@ -73,7 +74,8 @@ state 0
     (9) expression -> . STRING_LITERAL
     (10) expression -> . CHAR_LITERAL
     (11) expression -> . LBRACKET expression_list RBRACKET
-    (14) instruction_or_function_call -> . IDENTIFIER argument_list_optional
+    (14) instruction_or_function_call -> . IDENTIFIER NEWLINE
+    (15) instruction_or_function_call -> . IDENTIFIER argument_list_optional
 
     FUNC            shift and go to state 7
     NUMBER          shift and go to state 9
@@ -107,7 +109,8 @@ state 2
     (9) expression -> . STRING_LITERAL
     (10) expression -> . CHAR_LITERAL
     (11) expression -> . LBRACKET expression_list RBRACKET
-    (14) instruction_or_function_call -> . IDENTIFIER argument_list_optional
+    (14) instruction_or_function_call -> . IDENTIFIER NEWLINE
+    (15) instruction_or_function_call -> . IDENTIFIER argument_list_optional
 
     $end            reduce using rule 1 (program -> statement_list .)
     FUNC            shift and go to state 7
@@ -187,40 +190,26 @@ state 7
 
 state 8
 
-    (14) instruction_or_function_call -> IDENTIFIER . argument_list_optional
-    (15) argument_list_optional -> . argument_list
-    (16) argument_list_optional -> . empty
+    (14) instruction_or_function_call -> IDENTIFIER . NEWLINE
+    (15) instruction_or_function_call -> IDENTIFIER . argument_list_optional
+    (16) argument_list_optional -> . argument_list
     (17) argument_list -> . argument_list COMMA argument
     (18) argument_list -> . argument
-    (24) empty -> .
     (19) argument -> . NUMBER
     (20) argument -> . STRING_LITERAL
     (21) argument -> . CHAR_LITERAL
     (22) argument -> . IDENTIFIER
     (23) argument -> . REGISTER
 
-  ! shift/reduce conflict for NUMBER resolved as shift
-  ! shift/reduce conflict for STRING_LITERAL resolved as shift
-  ! shift/reduce conflict for CHAR_LITERAL resolved as shift
-  ! shift/reduce conflict for IDENTIFIER resolved as shift
-    FUNC            reduce using rule 24 (empty -> .)
-    LBRACKET        reduce using rule 24 (empty -> .)
-    $end            reduce using rule 24 (empty -> .)
-    RBRACE          reduce using rule 24 (empty -> .)
+    NEWLINE         shift and go to state 16
     NUMBER          shift and go to state 20
     STRING_LITERAL  shift and go to state 21
     CHAR_LITERAL    shift and go to state 22
     IDENTIFIER      shift and go to state 15
     REGISTER        shift and go to state 23
 
-  ! NUMBER          [ reduce using rule 24 (empty -> .) ]
-  ! STRING_LITERAL  [ reduce using rule 24 (empty -> .) ]
-  ! CHAR_LITERAL    [ reduce using rule 24 (empty -> .) ]
-  ! IDENTIFIER      [ reduce using rule 24 (empty -> .) ]
-
-    argument_list_optional         shift and go to state 16
-    argument_list                  shift and go to state 17
-    empty                          shift and go to state 18
+    argument_list_optional         shift and go to state 17
+    argument_list                  shift and go to state 18
     argument                       shift and go to state 19
 
 state 9
@@ -327,46 +316,46 @@ state 15
 
 state 16
 
-    (14) instruction_or_function_call -> IDENTIFIER argument_list_optional .
+    (14) instruction_or_function_call -> IDENTIFIER NEWLINE .
 
-    FUNC            reduce using rule 14 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
-    NUMBER          reduce using rule 14 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
-    STRING_LITERAL  reduce using rule 14 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
-    CHAR_LITERAL    reduce using rule 14 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
-    LBRACKET        reduce using rule 14 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
-    IDENTIFIER      reduce using rule 14 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
-    $end            reduce using rule 14 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
-    RBRACE          reduce using rule 14 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
+    FUNC            reduce using rule 14 (instruction_or_function_call -> IDENTIFIER NEWLINE .)
+    NUMBER          reduce using rule 14 (instruction_or_function_call -> IDENTIFIER NEWLINE .)
+    STRING_LITERAL  reduce using rule 14 (instruction_or_function_call -> IDENTIFIER NEWLINE .)
+    CHAR_LITERAL    reduce using rule 14 (instruction_or_function_call -> IDENTIFIER NEWLINE .)
+    LBRACKET        reduce using rule 14 (instruction_or_function_call -> IDENTIFIER NEWLINE .)
+    IDENTIFIER      reduce using rule 14 (instruction_or_function_call -> IDENTIFIER NEWLINE .)
+    $end            reduce using rule 14 (instruction_or_function_call -> IDENTIFIER NEWLINE .)
+    RBRACE          reduce using rule 14 (instruction_or_function_call -> IDENTIFIER NEWLINE .)
 
 
 state 17
 
-    (15) argument_list_optional -> argument_list .
-    (17) argument_list -> argument_list . COMMA argument
+    (15) instruction_or_function_call -> IDENTIFIER argument_list_optional .
 
-    FUNC            reduce using rule 15 (argument_list_optional -> argument_list .)
-    NUMBER          reduce using rule 15 (argument_list_optional -> argument_list .)
-    STRING_LITERAL  reduce using rule 15 (argument_list_optional -> argument_list .)
-    CHAR_LITERAL    reduce using rule 15 (argument_list_optional -> argument_list .)
-    LBRACKET        reduce using rule 15 (argument_list_optional -> argument_list .)
-    IDENTIFIER      reduce using rule 15 (argument_list_optional -> argument_list .)
-    $end            reduce using rule 15 (argument_list_optional -> argument_list .)
-    RBRACE          reduce using rule 15 (argument_list_optional -> argument_list .)
-    COMMA           shift and go to state 27
+    FUNC            reduce using rule 15 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
+    NUMBER          reduce using rule 15 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
+    STRING_LITERAL  reduce using rule 15 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
+    CHAR_LITERAL    reduce using rule 15 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
+    LBRACKET        reduce using rule 15 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
+    IDENTIFIER      reduce using rule 15 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
+    $end            reduce using rule 15 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
+    RBRACE          reduce using rule 15 (instruction_or_function_call -> IDENTIFIER argument_list_optional .)
 
 
 state 18
 
-    (16) argument_list_optional -> empty .
+    (16) argument_list_optional -> argument_list .
+    (17) argument_list -> argument_list . COMMA argument
 
-    FUNC            reduce using rule 16 (argument_list_optional -> empty .)
-    NUMBER          reduce using rule 16 (argument_list_optional -> empty .)
-    STRING_LITERAL  reduce using rule 16 (argument_list_optional -> empty .)
-    CHAR_LITERAL    reduce using rule 16 (argument_list_optional -> empty .)
-    LBRACKET        reduce using rule 16 (argument_list_optional -> empty .)
-    IDENTIFIER      reduce using rule 16 (argument_list_optional -> empty .)
-    $end            reduce using rule 16 (argument_list_optional -> empty .)
-    RBRACE          reduce using rule 16 (argument_list_optional -> empty .)
+    FUNC            reduce using rule 16 (argument_list_optional -> argument_list .)
+    NUMBER          reduce using rule 16 (argument_list_optional -> argument_list .)
+    STRING_LITERAL  reduce using rule 16 (argument_list_optional -> argument_list .)
+    CHAR_LITERAL    reduce using rule 16 (argument_list_optional -> argument_list .)
+    LBRACKET        reduce using rule 16 (argument_list_optional -> argument_list .)
+    IDENTIFIER      reduce using rule 16 (argument_list_optional -> argument_list .)
+    $end            reduce using rule 16 (argument_list_optional -> argument_list .)
+    RBRACE          reduce using rule 16 (argument_list_optional -> argument_list .)
+    COMMA           shift and go to state 27
 
 
 state 19
@@ -474,7 +463,8 @@ state 26
     (9) expression -> . STRING_LITERAL
     (10) expression -> . CHAR_LITERAL
     (11) expression -> . LBRACKET expression_list RBRACKET
-    (14) instruction_or_function_call -> . IDENTIFIER argument_list_optional
+    (14) instruction_or_function_call -> . IDENTIFIER NEWLINE
+    (15) instruction_or_function_call -> . IDENTIFIER argument_list_optional
 
     FUNC            shift and go to state 7
     NUMBER          shift and go to state 9
@@ -549,7 +539,8 @@ state 30
     (9) expression -> . STRING_LITERAL
     (10) expression -> . CHAR_LITERAL
     (11) expression -> . LBRACKET expression_list RBRACKET
-    (14) instruction_or_function_call -> . IDENTIFIER argument_list_optional
+    (14) instruction_or_function_call -> . IDENTIFIER NEWLINE
+    (15) instruction_or_function_call -> . IDENTIFIER argument_list_optional
 
     RBRACE          shift and go to state 33
     FUNC            shift and go to state 7
@@ -600,10 +591,3 @@ state 33
     $end            reduce using rule 7 (function_definition -> FUNC IDENTIFIER LBRACE statement_list RBRACE .)
     RBRACE          reduce using rule 7 (function_definition -> FUNC IDENTIFIER LBRACE statement_list RBRACE .)
 
-WARNING: 
-WARNING: Conflicts:
-WARNING: 
-WARNING: shift/reduce conflict for NUMBER in state 8 resolved as shift
-WARNING: shift/reduce conflict for STRING_LITERAL in state 8 resolved as shift
-WARNING: shift/reduce conflict for CHAR_LITERAL in state 8 resolved as shift
-WARNING: shift/reduce conflict for IDENTIFIER in state 8 resolved as shift
