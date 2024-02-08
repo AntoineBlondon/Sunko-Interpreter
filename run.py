@@ -5,7 +5,7 @@ from sunko_runtime import Runtime
 def run_script(filename):
     # Read the source file
     with open(filename, 'r') as file:
-        source_code = file.read()
+        source_code = file.read().strip() + "\n"
 
     # Parse the source code into an AST
     ast = parser.parse(source_code)
