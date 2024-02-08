@@ -33,6 +33,12 @@ def MUL(*args):
     value1, value2 = get_values([value1, value2])
     runtime.store_to_register(register["index"], value1 * value2)
 
+def TDIV(*args):
+    register, value1, value2 = args
+    runtime = ContextManager().get_runtime()
+    value1, value2 = get_values([value1, value2])
+    runtime.store_to_register(register["index"], value1 / value2)
+
 def DIV(*args):
     register, value1, value2 = args
     runtime = ContextManager().get_runtime()
