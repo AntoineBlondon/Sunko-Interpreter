@@ -67,7 +67,7 @@ To get started with Sunko, let's write a simple "Hello, World!" program. This ex
 
 Create a new file named `hello.sko` and open it in your favorite text editor. Enter the following Sunko code:
 
-```assembly
+```
 # Hello World in Sunko
 PRINT "Hello, World!"
 HALT
@@ -89,7 +89,7 @@ Sunko's syntax is designed to be clear and accessible, drawing inspiration from 
 
 Comments in Sunko begin with a semicolon (`#`) and extend to the end of the line. Comments are ignored by the interpreter and are useful for adding notes and explanations within your code.
 
-```assembly
+```
 # This is a comment
 ```
 
@@ -97,7 +97,7 @@ Comments in Sunko begin with a semicolon (`#`) and extend to the end of the line
 
 In Sunko, variables are directly associated with registers or memory addresses. The language supports a simple set of data types, primarily integers and strings for simplicity.
 
-```assembly
+```
 # Assigning an integer value to a register
 SET @0, 10
 
@@ -109,7 +109,7 @@ SET @1, "Hello, Sunko!"
 
 Sunko supports basic arithmetic operations such as addition, subtraction, multiplication, and division. These operations are performed using specific instructions and can involve immediate values or values stored in registers.
 
-```assembly
+```
 # Adding two numbers
 SET @0, 5
 SET @1, 10
@@ -123,7 +123,7 @@ SUB @3, @1, @0  # @3 now contains 5
 
 Control flow in Sunko is managed through conditional execution and function calls. While traditional `JMP` (jump) instructions are not used, conditional calls like `CEQ` (Call if Equal) allow for implementing decision-making logic.
 
-```assembly
+```
 # Conditional execution example
 SET @0, 10
 SET @1, 10
@@ -134,7 +134,7 @@ CEQ equal_function, @0, @1  # Calls 'equal_function' if @0 and @1 are equal
 
 Functions in Sunko allow grouping instructions into reusable blocks. Functions are defined with a name, and they can be called using the `CALL` instruction. 
 
-```assembly
+```
 # Function definition
 FUNC add_numbers {
     SET @0, 5
@@ -151,7 +151,7 @@ CALL add_numbers
 
 Input and output operations are essential for interacting with the user. Sunko provides `INPUT` for reading input from the user and `PRINT` for displaying messages.
 
-```assembly
+```
 # Reading input
 INPUT @0, "Enter a number: "
 
@@ -264,7 +264,7 @@ Below are some examples to help you get started with Sunko programming:
 
 This example reads two numbers from the user, adds them, and prints the result.
 
-```assembly
+```
 # Read two numbers
 INPUT @0, "Enter the first number: "
 INPUT @1, "Enter the second number: "
@@ -282,7 +282,7 @@ HALT
 
 This example compares two numbers and prints a message based on the comparison.
 
-```assembly
+```
 # Assign numbers
 SET @0, 10
 SET @1, 20
