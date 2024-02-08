@@ -40,7 +40,10 @@ class Runtime:
 
     def evaluate_int(self, node):
         return node
-    
+
+    def evaluate_float(self, node):
+        return node
+
     def evaluate_str(self, node):
         return node
 
