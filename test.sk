@@ -1,0 +1,5 @@
+SET @1, 5
+SET @2, 2
+ADD @3, @1, @2
+
+ADD @3, @3, @RETURN
