@@ -65,11 +65,59 @@ def CALL(*args):
 def CEQ(*args):
     function_name, value1, value2 = args
 
-    runtime = ContextManager().get_runtime()
     value1, value2 = get_values([value1, value2])
 
     if value1 == value2:
         CALL(function_name)
+
+def CNE(*args):
+    function_name, value1, value2 = args
+
+    value1, value2 = get_values([value1, value2])
+
+    if value1 != value2:
+        CALL(function_name)
+
+def CGT(*args):
+    function_name, value1, value2 = args
+
+    value1, value2 = get_values([value1, value2])
+
+    if value1 > value2:
+        CALL(function_name)
+
+def CLT(*args):
+    function_name, value1, value2 = args
+
+    value1, value2 = get_values([value1, value2])
+
+    if value1 < value2:
+        CALL(function_name)
+
+def CLE(*args):
+    function_name, value1, value2 = args
+
+    value1, value2 = get_values([value1, value2])
+
+    if value1 <= value2:
+        CALL(function_name)
+
+def CGE(*args):
+    function_name, value1, value2 = args
+
+    value1, value2 = get_values([value1, value2])
+
+    if value1 >= value2:
+        CALL(function_name)
+
+def CMP(*args):
+    register, value1, value2 = args
+
+    runtime = ContextManager().get_runtime()
+    value1, value2 = get_values([value1, value2])
+
+    runtime.store_to_register(register["index"], 1 if value1 == value2 else 0)
+
 
 def INPUT(*args):
     register = args[0]
