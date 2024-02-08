@@ -26,7 +26,7 @@ class FunctionDeclaration(AstNode):
 
 
 class Instruction(AstNode):
-    def __init(self, instruction_name, arguments, lineno=None, col_offset=None):
+    def __init__(self, instruction_name, arguments, lineno=None, col_offset=None):
         super().__init__(lineno, col_offset)
         self.instruction_name = instruction_name
         self.arguments = arguments
@@ -80,3 +80,19 @@ class List(AstNode):
         return f"List(elements={self.elements})"
 
 
+class Identifier(AstNode):
+    def __init__(self, name, lineno=None, col_offset=None):
+        super().__init__(lineno, col_offset)
+        self.name = name
+    
+    def __str__(self):
+        return f"Identifier(name={self.name})"
+
+
+class Register(AstNode):
+    def __init__(self, index, lineno=None, col_offset=None):
+        super().__init__(lineno, col_offset)
+        self.index = index
+    
+    def __str__(self):
+        return f"Register(index={self.index})"

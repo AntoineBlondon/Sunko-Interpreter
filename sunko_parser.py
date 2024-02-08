@@ -25,7 +25,9 @@ def p_statement(p):
 # Function definition
 def p_function_definition(p):
     'function_definition : FUNC IDENTIFIER LBRACE statement_list RBRACE'
-    p[0] = FunctionDeclaration(name=p[2], stataments=p[4])
+    # Wrap the list of statements in a StatementList if not already wrapped
+    statements = p[4] if isinstance(p[4], StatementList) else StatementList(statements=p[4])
+    p[0] = FunctionDeclaration(name=p[2], statements=statements)
 
 
 def p_number(p):
@@ -65,7 +67,7 @@ def p_instruction_or_function_call(p):
 def p_argument_list_optional(p):
     '''argument_list_optional : argument_list
                               | empty'''
-    p[0] = ArgumentList(arguments=p[1]) if p[1] else []
+    p[0] = ArgumentList(arguments=p[1]) if p[1] else ArgumentList(arguments=[])
 
 # Handling the argument list for instructions
 def p_argument_list(p):
@@ -78,12 +80,22 @@ def p_argument_list(p):
 
 # Defining what constitutes an argument
 def p_argument(p):
-    '''argument : IDENTIFIER
-                | REGISTER
-                | NUMBER
+    '''argument : NUMBER
                 | STRING_LITERAL
                 | CHAR_LITERAL'''
     p[0] = p[1]
+
+def p_identifier(p):
+    'argument : IDENTIFIER'
+    p[0] = Identifier(name=p[1])  # Assuming you have an Identifier node class
+
+def p_register(p):
+    'argument : REGISTER'
+    try:
+        register_index = int(p[1][1:])  # Assuming register token is in format "@1", "@2", etc.
+    except:
+        register_index = p[1][1:]
+    p[0] = Register(index=register_index)
 
 # Rule for handling an empty production
 def p_empty(p):

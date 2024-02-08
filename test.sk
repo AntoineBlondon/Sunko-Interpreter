@@ -1,5 +1,10 @@
-SET @1, 5
-SET @2, 2
-ADD @3, @1, @2
+FUNC hi {
+    PRINT 2
+    SET @RETURN, "hi"
+}
 
-ADD @3, @3, @RETURN
+
+CALL hi
+
+
+PRINT @RETURN
