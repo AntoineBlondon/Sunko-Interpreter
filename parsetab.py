@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'CHAR_LITERAL COMMA FUNC IDENTIFIER LBRACE LBRACKET NEWLINE NUMBER RBRACE RBRACKET REGISTER STRING_LITERALprogram : statement_liststatement_list : statement_list statement\n                      | statementstatement : function_definition\n                 | expression\n                 | instruction_or_function_callfunction_definition : FUNC IDENTIFIER LBRACE statement_list RBRACEexpression : NUMBERexpression : STRING_LITERALexpression : CHAR_LITERALexpression : LBRACKET expression_list RBRACKETexpression_list : expression_list COMMA expression\n                       | expressioninstruction_or_function_call : IDENTIFIER NEWLINEinstruction_or_function_call : IDENTIFIER argument_list_optionalargument_list_optional : argument_listargument_list : argument_list COMMA argument\n                     | argumentargument : NUMBER\n                | STRING_LITERAL\n                | CHAR_LITERALargument : IDENTIFIERargument : REGISTERempty :'
+_lr_signature = 'CHAR_LITERAL COMMA FUNC IDENTIFIER LBRACE LBRACKET NEWLINE NUMBER RBRACE RBRACKET REGISTER STRING_LITERALprogram : statement_liststatement_list : statement_list statement\n                      | statementstatement : function_definition NEWLINE\n                 | expression NEWLINE\n                 | instruction_or_function_call NEWLINEfunction_definition : FUNC IDENTIFIER LBRACE NEWLINE statement_list RBRACEexpression : NUMBERexpression : STRING_LITERALexpression : CHAR_LITERALexpression : LBRACKET expression_list RBRACKETexpression_list : expression_list COMMA expression\n                       | expressioninstruction_or_function_call : IDENTIFIERinstruction_or_function_call : IDENTIFIER argument_list_optionalargument_list_optional : argument_listargument_list : argument_list COMMA argument\n                     | argumentargument : NUMBER\n                | STRING_LITERAL\n                | CHAR_LITERALargument : IDENTIFIERargument : REGISTER'
     
-_lr_action_items = {'FUNC':([0,2,3,4,5,6,9,10,11,13,15,16,17,18,19,20,21,22,23,26,28,30,31,33,],[7,7,-3,-4,-5,-6,-8,-9,-10,-2,-22,-14,-15,-16,-18,-19,-20,-21,-23,7,-11,7,-17,-7,]),'NUMBER':([0,2,3,4,5,6,8,9,10,11,12,13,15,16,17,18,19,20,21,22,23,26,27,28,29,30,31,33,],[9,9,-3,-4,-5,-6,20,-8,-9,-10,9,-2,-22,-14,-15,-16,-18,-19,-20,-21,-23,9,20,-11,9,9,-17,-7,]),'STRING_LITERAL':([0,2,3,4,5,6,8,9,10,11,12,13,15,16,17,18,19,20,21,22,23,26,27,28,29,30,31,33,],[10,10,-3,-4,-5,-6,21,-8,-9,-10,10,-2,-22,-14,-15,-16,-18,-19,-20,-21,-23,10,21,-11,10,10,-17,-7,]),'CHAR_LITERAL':([0,2,3,4,5,6,8,9,10,11,12,13,15,16,17,18,19,20,21,22,23,26,27,28,29,30,31,33,],[11,11,-3,-4,-5,-6,22,-8,-9,-10,11,-2,-22,-14,-15,-16,-18,-19,-20,-21,-23,11,22,-11,11,11,-17,-7,]),'LBRACKET':([0,2,3,4,5,6,9,10,11,12,13,15,16,17,18,19,20,21,22,23,26,28,29,30,31,33,],[12,12,-3,-4,-5,-6,-8,-9,-10,12,-2,-22,-14,-15,-16,-18,-19,-20,-21,-23,12,-11,12,12,-17,-7,]),'IDENTIFIER':([0,2,3,4,5,6,7,8,9,10,11,13,15,16,17,18,19,20,21,22,23,26,27,28,30,31,33,],[8,8,-3,-4,-5,-6,14,15,-8,-9,-10,-2,-22,-14,-15,-16,-18,-19,-20,-21,-23,8,15,-11,8,-17,-7,]),'$end':([1,2,3,4,5,6,9,10,11,13,15,16,17,18,19,20,21,22,23,28,31,33,],[0,-1,-3,-4,-5,-6,-8,-9,-10,-2,-22,-14,-15,-16,-18,-19,-20,-21,-23,-11,-17,-7,]),'RBRACE':([3,4,5,6,9,10,11,13,15,16,17,18,19,20,21,22,23,28,30,31,33,],[-3,-4,-5,-6,-8,-9,-10,-2,-22,-14,-15,-16,-18,-19,-20,-21,-23,-11,33,-17,-7,]),'NEWLINE':([8,],[16,]),'REGISTER':([8,27,],[23,23,]),'RBRACKET':([9,10,11,24,25,28,32,],[-8,-9,-10,28,-13,-11,-12,]),'COMMA':([9,10,11,15,18,19,20,21,22,23,24,25,28,31,32,],[-8,-9,-10,-22,27,-18,-19,-20,-21,-23,29,-13,-11,-17,-12,]),'LBRACE':([14,],[26,]),}
+_lr_action_items = {'FUNC':([0,2,3,13,14,15,16,32,35,],[7,7,-3,-2,-4,-5,-6,7,7,]),'NUMBER':([0,2,3,8,12,13,14,15,16,29,31,32,35,],[9,9,-3,22,9,-2,-4,-5,-6,22,9,9,9,]),'STRING_LITERAL':([0,2,3,8,12,13,14,15,16,29,31,32,35,],[10,10,-3,23,10,-2,-4,-5,-6,23,10,10,10,]),'CHAR_LITERAL':([0,2,3,8,12,13,14,15,16,29,31,32,35,],[11,11,-3,24,11,-2,-4,-5,-6,24,11,11,11,]),'LBRACKET':([0,2,3,12,13,14,15,16,31,32,35,],[12,12,-3,12,-2,-4,-5,-6,12,12,12,]),'IDENTIFIER':([0,2,3,7,8,13,14,15,16,29,32,35,],[8,8,-3,17,18,-2,-4,-5,-6,18,8,8,]),'$end':([1,2,3,13,14,15,16,],[0,-1,-3,-2,-4,-5,-6,]),'RBRACE':([3,13,14,15,16,35,],[-3,-2,-4,-5,-6,36,]),'NEWLINE':([4,5,6,8,9,10,11,18,19,20,21,22,23,24,25,28,30,33,36,],[14,15,16,-14,-8,-9,-10,-22,-15,-16,-18,-19,-20,-21,-23,32,-11,-17,-7,]),'REGISTER':([8,29,],[25,25,]),'RBRACKET':([9,10,11,26,27,30,34,],[-8,-9,-10,30,-13,-11,-12,]),'COMMA':([9,10,11,18,20,21,22,23,24,25,26,27,30,33,34,],[-8,-9,-10,-22,29,-18,-19,-20,-21,-23,31,-13,-11,-17,-12,]),'LBRACE':([17,],[28,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'statement_list':([0,26,],[2,30,]),'statement':([0,2,26,30,],[3,13,3,13,]),'function_definition':([0,2,26,30,],[4,4,4,4,]),'expression':([0,2,12,26,29,30,],[5,5,25,5,32,5,]),'instruction_or_function_call':([0,2,26,30,],[6,6,6,6,]),'argument_list_optional':([8,],[17,]),'argument_list':([8,],[18,]),'argument':([8,27,],[19,31,]),'expression_list':([12,],[24,]),}
+_lr_goto_items = {'program':([0,],[1,]),'statement_list':([0,32,],[2,35,]),'statement':([0,2,32,35,],[3,13,3,13,]),'function_definition':([0,2,32,35,],[4,4,4,4,]),'expression':([0,2,12,31,32,35,],[5,5,27,34,5,5,]),'instruction_or_function_call':([0,2,32,35,],[6,6,6,6,]),'argument_list_optional':([8,],[19,]),'argument_list':([8,],[20,]),'argument':([8,29,],[21,33,]),'expression_list':([12,],[26,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -30,17 +30,17 @@ _lr_productions = [
   ('program -> statement_list','program',1,'p_program','sunko_parser.py',8),
   ('statement_list -> statement_list statement','statement_list',2,'p_statement_list','sunko_parser.py',12),
   ('statement_list -> statement','statement_list',1,'p_statement_list','sunko_parser.py',13),
-  ('statement -> function_definition','statement',1,'p_statement','sunko_parser.py',20),
-  ('statement -> expression','statement',1,'p_statement','sunko_parser.py',21),
-  ('statement -> instruction_or_function_call','statement',1,'p_statement','sunko_parser.py',22),
-  ('function_definition -> FUNC IDENTIFIER LBRACE statement_list RBRACE','function_definition',5,'p_function_definition','sunko_parser.py',27),
+  ('statement -> function_definition NEWLINE','statement',2,'p_statement','sunko_parser.py',20),
+  ('statement -> expression NEWLINE','statement',2,'p_statement','sunko_parser.py',21),
+  ('statement -> instruction_or_function_call NEWLINE','statement',2,'p_statement','sunko_parser.py',22),
+  ('function_definition -> FUNC IDENTIFIER LBRACE NEWLINE statement_list RBRACE','function_definition',6,'p_function_definition','sunko_parser.py',27),
   ('expression -> NUMBER','expression',1,'p_number','sunko_parser.py',34),
   ('expression -> STRING_LITERAL','expression',1,'p_string','sunko_parser.py',38),
   ('expression -> CHAR_LITERAL','expression',1,'p_character','sunko_parser.py',42),
   ('expression -> LBRACKET expression_list RBRACKET','expression',3,'p_list_expression','sunko_parser.py',48),
   ('expression_list -> expression_list COMMA expression','expression_list',3,'p_expression_list','sunko_parser.py',52),
   ('expression_list -> expression','expression_list',1,'p_expression_list','sunko_parser.py',53),
-  ('instruction_or_function_call -> IDENTIFIER NEWLINE','instruction_or_function_call',2,'p_instruction_or_function_call_no_args','sunko_parser.py',60),
+  ('instruction_or_function_call -> IDENTIFIER','instruction_or_function_call',1,'p_instruction_or_function_call_no_args','sunko_parser.py',60),
   ('instruction_or_function_call -> IDENTIFIER argument_list_optional','instruction_or_function_call',2,'p_instruction_or_function_call','sunko_parser.py',65),
   ('argument_list_optional -> argument_list','argument_list_optional',1,'p_argument_list_optional','sunko_parser.py',70),
   ('argument_list -> argument_list COMMA argument','argument_list',3,'p_argument_list','sunko_parser.py',75),
@@ -50,5 +50,4 @@ _lr_productions = [
   ('argument -> CHAR_LITERAL','argument',1,'p_argument','sunko_parser.py',86),
   ('argument -> IDENTIFIER','argument',1,'p_identifier','sunko_parser.py',90),
   ('argument -> REGISTER','argument',1,'p_register','sunko_parser.py',94),
-  ('empty -> <empty>','empty',0,'p_empty','sunko_parser.py',103),
 ]
