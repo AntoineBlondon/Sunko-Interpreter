@@ -1,2 +1,4 @@
-# HI
-PRINT 2
+FUNC hello {
+    PRINT "Hello, World!"
+}
+

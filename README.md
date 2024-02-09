@@ -12,11 +12,13 @@
     - [Control Flow](#control-flow)
     - [Functions](#functions)
     - [Input and Output](#input-and-output)
+    - [Type Casting](#type-casting)
 5. [Instruction Set](#instruction-set)
     - [Arithmetic Instructions](#arithmetic-instructions)
     - [Memory Instructions](#memory-instructions)
     - [Control Flow Instructions](#control-flow-instructions)
     - [Input/Output Instructions](#inputoutput-instructions)
+    - [Type Casting Instructions](#type-casting-instructions)
     - [Miscellaneous Instructions](#miscellaneous-instructions)
 6. [Examples](#examples)
 7. [Contributing](#contributing)
@@ -160,6 +162,18 @@ PRINT "You entered: "
 PRINT @0
 ```
 
+### Type Casting
+
+In order to insure a smooth execution, one can cast a value to a type. Sunko provides the instructions `INT` and `STR` to transition between the two types.
+
+```
+# Casting to integer
+INT @0, "3"
+
+# Casting to string
+STR @2, 15
+```
+
 ## Instruction Set
 
 Sunko offers a rich set of instructions designed for direct manipulation of registers and memory, control flow, and interaction with the user. Below is a detailed overview of each instruction available in Sunko.
@@ -243,6 +257,16 @@ Sunko offers a rich set of instructions designed for direct manipulation of regi
   - **Syntax**: `PRINT value`
   - **Example**: `PRINT "Hello, Sunko!"` prints "Hello, Sunko!" to the console.
 
+### Type Casting Instructions
+
+- **`INT`**: Casts a value to an integer and stores it in a register.
+  - **Syntax**: `INT register, value`
+  - **Example**: `INT @0, "3"` Casts the string "3" to the number 3 and stores it in register 0
+
+- **`STR`**: Casts a value to an string and stores it in a register.
+  - **Syntax**: `STR register, value`
+  - **Example**: `STR @0, 32` Casts the int 32 to the string "32" and stores it in register 0
+
 ### Miscellaneous Instructions
 
 - **`REG`**: Displays the current state of all registers (useful for debugging).
@@ -300,6 +324,44 @@ CMP @2, @0, @1
 CEQ print_equal, @2, 1
 CEQ print_not_equal, @2, 0
 ```
+
+### Example 3: Factorial
+
+This example computes the factorial of an input number and prints the result.
+
+```
+# Calculates the factorial of the number in @0, result in @RETURN
+FUNC Factorial {
+    # Initialize the loop counter and the result accumulator
+    SET @1, 1  # Loop counter
+    SET @2, 1  # Result accumulator
+
+    # Define the loop function for factorial calculation
+    FUNC loop {
+        MUL @2, @2, @1  # Multiply the accumulator by the loop counter
+        ADD @1, @1, 1   # Increment the loop counter
+        CLE loop, @1, @0  # If loop counter is less than or equal to @0, continue looping
+    }
+
+    # Start the loop if @0 is greater than or equal to 1
+    CLE loop, @1, @0
+
+    # Store the final result in @RETURN
+    SET @RETURN, @2
+
+    # Reset used registers
+    SET @1, 0
+    SET @2, 0
+}
+
+
+
+INPUT @0, "Enter a number: "
+INT @0, @0
+CALL Factorial
+PRINT @RETURN
+```
+
 
 ## Contributing
 

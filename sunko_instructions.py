@@ -132,6 +132,19 @@ def PRINT(*args):
     value = args[0]
     print(get_value(value))
 
+def INT(*args):
+    register, value = args
+    runtime = ContextManager().get_runtime()
+    value = get_value(value)
+    runtime.store_to_register(register["index"], int(value))
+
+def STR(*args):
+    register, value = args
+    runtime = ContextManager().get_runtime()
+    value = get_value(value)
+    runtime.store_to_register(register["index"], str(value))
+
+
 def REG(*args):
     print(args)
     print(ContextManager().get_runtime().registers)
