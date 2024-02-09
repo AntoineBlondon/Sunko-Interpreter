@@ -30,11 +30,6 @@ t_RBRACKET = r'\]'
 
 t_ignore = ' \t'
 
-# Single-line Comment Rule
-def t_COMMENT(t):
-    r'\#.*'
-    pass
-
 # String literal
 def t_STRING_LITERAL(t):
     r'"([^"\\]|\\.)*"'
