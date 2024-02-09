@@ -60,6 +60,10 @@ Before installing Sunko, ensure you have the following prerequisites:
    git clone https://github.com/AntoineBlondon/Sunko-Interpreter.git
    cd Sunko-Interpreter
    ```
+- **Running a program**:
+  ```bash
+  python3 run.py program_file.sko
+  ```
 
 ## Getting Started
 
