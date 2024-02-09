@@ -89,7 +89,7 @@ Sunko's syntax is designed to be clear and accessible, drawing inspiration from 
 
 ### Comments
 
-Comments in Sunko begin with a semicolon (`#`) and extend to the end of the line. Comments are ignored by the interpreter and are useful for adding notes and explanations within your code.
+Comments in Sunko begin with a Hashtag (`#`) and extend to the end of the line. Comments are ignored by the interpreter and are useful for adding notes and explanations within your code.
 
 ```
 # This is a comment
@@ -106,6 +106,23 @@ SET @0, 10
 # Assigning a string value to a register
 SET @1, "Hello, Sunko!"
 ```
+
+#### Registers
+
+When starting a program, every register gets set to 0
+
+There are two types of registers :
+
+- **Standard Registers**: (32 of them)
+  - From `@0` to `@31`
+- **Special Registers**:
+  - **`@RETURN`**: When calling a function, this register resets to 0
+  - (More registers might be added in the future)
+
+#### Memory (not implemented yet)
+
+A more persistent memory system will be implemented in the future.
+
 
 ### Arithmetic Operations
 
