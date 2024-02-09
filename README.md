@@ -344,7 +344,7 @@ FUNC Factorial {
     }
 
     # Start the loop if @0 is greater than or equal to 1
-    CLE loop, @1, @0
+    CGE loop, @0, 1
 
     # Store the final result in @RETURN
     SET @RETURN, @2
