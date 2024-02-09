@@ -49,13 +49,13 @@ Installing Sunko is straightforward. The language is designed to run on multiple
 
 ### Prerequisites
 
-Before installing Sunko, ensure you have the following prerequisites installed on your system:
+Before installing Sunko, ensure you have the following prerequisites:
 - Python 3.6 or higher
-- Git (optional, for cloning the repository)
+- Git
 
 ### Steps
 
-1. **Clone the Repository** (optional if you're installing from source):
+- **Clone the Repository**:
    ```bash
    git clone https://github.com/AntoineBlondon/Sunko-Interpreter.git
    cd Sunko-Interpreter
