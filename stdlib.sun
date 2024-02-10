@@ -22,9 +22,38 @@ FUNC Factorial {
     SET @2, 0
 }
 
+# Calculates the nth Fibonacci number with n in @0, result in @RETURN
+FUNC Fibonacci {
+    
+    SET @1, 0  # Previous
+    SET @2, 1  # Current
+    SET @3, 1  # Index of current number
+    
+    FUNC loop {
+
+        ADD @1, @1, @2
+        SWAP @1, @2
+
+        ADD @3, @3, 1  # Increment index
+        CLT loop, @3, @0  # If index is less than n, continue looping
+    }
+
+    FUNC lower_than_1 {
+        SET @RETURN, 0
+    }
 
 
-INPUT @0, "Enter a number: "
-INT @0, @0
-CALL Factorial
-PRINT @RETURN
+    # Start the loop if @0 is greater than or equal to 1
+    CGE loop, @0, 1
+    
+    # Store the final result in @RETURN
+    SET @RETURN, @2
+
+    # If the input is lower than one, set @RETURN to 0
+    CLT lower_than_1, @0, 1
+
+    # Reset used registers
+    SET @1, 0
+    SET @2, 0
+    SET @3, 0
+}
