@@ -62,7 +62,7 @@ Before installing Sunko, ensure you have the following prerequisites:
    ```
 - **Running a program**:
   ```bash
-  python3 run.py program_file.sko
+  python3 run.py program_file.sun
   ```
 
 ## Getting Started
@@ -71,7 +71,7 @@ To get started with Sunko, let's write a simple "Hello, World!" program. This ex
 
 ### Hello World Example
 
-Create a new file named `hello.sko` and open it in your favorite text editor. Enter the following Sunko code:
+Create a new file named `hello.sun` and open it in your favorite text editor. Enter the following Sunko code:
 
 ```
 # Hello World in Sunko
@@ -82,7 +82,7 @@ HALT
 To run the program, use the Sunko interpreter from the command line:
 
 ```bash
-python3 run.py hello.sko
+python3 run.py hello.sun
 ```
 
 You should see "Hello, World!" printed to the console. Congratulations, you've just written and executed your first Sunko program!

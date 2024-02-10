@@ -1,0 +1,30 @@
+# Calculates the factorial of the number in @0, result in @RETURN
+FUNC Factorial {
+    # Initialize the loop counter and the result accumulator
+    SET @1, 1  # Loop counter
+    SET @2, 1  # Result accumulator
+
+    # Define the loop function for factorial calculation
+    FUNC loop {
+        MUL @2, @2, @1  # Multiply the accumulator by the loop counter
+        ADD @1, @1, 1   # Increment the loop counter
+        CLE loop, @1, @0  # If loop counter is less than or equal to @0, continue looping
+    }
+
+    # Start the loop if @0 is greater than or equal to 1
+    CGE loop, @0, 1
+
+    # Store the final result in @RETURN
+    SET @RETURN, @2
+
+    # Reset used registers
+    SET @1, 0
+    SET @2, 0
+}
+
+
+
+INPUT @0, "Enter a number: "
+INT @0, @0
+CALL Factorial
+PRINT @RETURN
